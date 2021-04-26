@@ -5,6 +5,14 @@ public class Ball {
 
     }
 
+    public void run(Hare hare) {
+
+    }
+
+    public void run2(Wolf wolf) {
+
+    }
+
     public void tryEat(Ball ball) {
 
     }
