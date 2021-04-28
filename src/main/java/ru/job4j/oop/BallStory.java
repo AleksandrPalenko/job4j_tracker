@@ -7,11 +7,11 @@ public class BallStory {
         Fox fox = new Fox();
         Wolf wolf = new Wolf();
         hare.tryEat(ball);
-        ball.run(hare);
+        System.out.println("run away from the hare");
         wolf.tryEat(ball);
-        ball.run2(wolf);
+        System.out.println("run away from the wolf");
         fox.tryEat(ball);
-        ball.stop(fox);
+        System.out.println("the fox ate the ball");
 
     }
 
