@@ -12,9 +12,9 @@ public class CalculatorTest {
         int first = 1;
         int second = 2;
         int third = 3;
-        int four = 4;
+        int four = 5;
         int result = Calculator.max(first, second, third, four);
-        int expected = 4;
+        int expected = 5;
         Assert.assertEquals(result, expected);
     }
 }

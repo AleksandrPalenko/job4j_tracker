@@ -8,8 +8,7 @@ public class Calculator {
     }
 
     public static int max(int first, int second, int third) {
-        int tmp = max(first, second);
-        return max(tmp, third);
+        return max(max(first, second), third);
 
     }
 
