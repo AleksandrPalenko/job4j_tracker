@@ -10,9 +10,9 @@ public class PointTest {
 
     @Test
     public void distance3d() {
-        double expected = 4;
-        Point a = new Point(0, 3, 3);
-        Point b = new Point(0, 7, 4);
+        double expected = 3.46;
+        Point a = new Point(0, 0, 0);
+        Point b = new Point(2, 2, 2);
         double rsl = a.distance3d(b);
         Assert.assertThat(rsl, closeTo(expected, 0.01));
 

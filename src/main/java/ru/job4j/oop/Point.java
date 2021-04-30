@@ -20,7 +20,7 @@ public class Point {
     public Point(int x, int y, int z) {
         this.x = x;
         this.y = y;
-        this.y = y;
+        this.z = z;
     }
 
     public double distance3d(Point that) {
@@ -34,9 +34,9 @@ public class Point {
     }
 
     public static void main(String[] args) {
-        Point a = new Point(0, 3, 3);
-        Point b = new Point(0, 7, 4);
-        double dins = a.distance(b);
+        Point a = new Point(0, 0, 0);
+        Point b = new Point(2, 2, 2);
+        double dins = a.distance3d(b);
         System.out.println(dins);
     }
 
