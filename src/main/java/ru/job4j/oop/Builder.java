@@ -5,6 +5,17 @@ public class Builder extends Engineer {
     private String nameOfTool;
     private int sizeOfWall;
 
+    public Builder() {
+        super();
+    }
+
+    public Builder(String name, String surname, String education, int birthday, String nameOfProject, String executorOfProject, String nameOfTool, int sizeOfWall) {
+        super(name, surname, education, birthday, nameOfProject, executorOfProject);
+        this.nameOfTool = nameOfTool;
+        this.sizeOfWall = sizeOfWall;
+    }
+
+
     public String getNameOfTool() {
         return nameOfTool;
     }

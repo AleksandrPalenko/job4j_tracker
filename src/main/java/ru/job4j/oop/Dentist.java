@@ -5,6 +5,17 @@ public class Dentist extends Doctor {
     private String nameOfTeeth;
     private int durationOfOperation;
 
+    public Dentist() {
+        super();
+    }
+
+    public Dentist(String name, String surname, String education, int birthday, int experienceOfWork, String gender, String nameOfTeeth, int durationOfOperation) {
+        super(name, surname, education, birthday, experienceOfWork, gender);
+        this.nameOfTeeth = nameOfTeeth;
+        this.durationOfOperation = durationOfOperation;
+    }
+
+
     public String getNameOfTeeth() {
         return nameOfTeeth;
     }
@@ -13,8 +24,11 @@ public class Dentist extends Doctor {
         return durationOfOperation;
     }
 
-    public void healATooth() {
-
+    public void healATooth(int countOfTeeth) {
+        System.out.println("кол-во вылеченных зубов: " + countOfTeeth);
     }
 
+    public static void main(String[] args) {
+
+    }
 }
