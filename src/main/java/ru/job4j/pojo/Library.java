@@ -26,14 +26,14 @@ public class Library extends Book {
             books[0] = books[3];
             books[3] = tmp;
             System.out.println(bk.getName() + " = " + bk.getCountOfPage());
+
         }
+
         System.out.println(" Just book where name like 'clean code'");
         for (int i = 0; i < books.length; i++) {
             Book bk = books[i];
-            // if (bk.getName() == "cleanCode") {
-            //     System.out.println(bk.getName());
-            if (bk.getName() == "cleanCode" ? bk.getName().equals("cleanCode") : "cleanCode" != bk.getName()) {
-                System.out.println(bk.getName());
+            if ("Clean code".equals(bk.getName())) {
+                System.out.println(bk.getName() + " = " + bk.getCountOfPage());
             }
         }
     }
