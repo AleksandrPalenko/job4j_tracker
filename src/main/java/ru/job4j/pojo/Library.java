@@ -30,7 +30,9 @@ public class Library extends Book {
         System.out.println(" Just book where name like 'clean code'");
         for (int i = 0; i < books.length; i++) {
             Book bk = books[i];
-            if (bk.getName() == "cleanCode") {
+            // if (bk.getName() == "cleanCode") {
+            //     System.out.println(bk.getName());
+            if (bk.getName() == "cleanCode" ? bk.getName().equals("cleanCode") : "cleanCode" != bk.getName()) {
                 System.out.println(bk.getName());
             }
         }
