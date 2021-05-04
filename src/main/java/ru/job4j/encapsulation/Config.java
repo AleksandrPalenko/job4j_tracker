@@ -4,13 +4,12 @@ public class Config {
     private String name;
     private int position;
     private String properties;
-    private String search;
 
     public Config(String name) {
         this.name = name;
     }
 
-    void print() {
+    public void print() {
         System.out.println(position);
     }
 
@@ -18,7 +17,7 @@ public class Config {
         return properties;
     }
 
-    public String getSearch(String key) {
-        return search;
+    private String search(String key) {
+        return key;
     }
 }
