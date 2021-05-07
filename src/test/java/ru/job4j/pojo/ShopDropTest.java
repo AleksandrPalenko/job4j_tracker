@@ -8,6 +8,7 @@ import static org.junit.Assert.*;
 
 public class ShopDropTest {
 
+
     @Test
     public void whenDropFirst() {
         Product[] products = new Product[2];
