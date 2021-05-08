@@ -35,7 +35,7 @@ public class Tracker {
                 sizeName++;
             }
         }
-        return Arrays.copyOf(otherName, size);
+        return Arrays.copyOf(otherName, sizeName);
     }
 
     public Item[] findAll() {
@@ -63,7 +63,13 @@ public class Tracker {
         return rsl;
     }
 
-    public Item replace() {
-
+    public boolean replace(int id, Item item) {
+        int index = indexOf(id);
+        if (index != -1) {
+            item.setId(id);
+            items[index] = item;
+        }
+        return true;
     }
+
 }
