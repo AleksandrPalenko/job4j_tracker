@@ -44,7 +44,6 @@ public class Item {
         LocalDateTime currentDateTime = LocalDateTime.now();
     }
 
-
     @Override
     public String toString() {
         return "Item{" + "name = '" + name + '\'' + '}';
