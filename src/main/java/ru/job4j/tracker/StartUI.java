@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class StartUI {
     public void init(Scanner scanner, Tracker tracker) {
-        boolean run = false;
+        boolean run = true;
         while (run) {
             this.showMenu();
             System.out.print("Select: ");
@@ -22,10 +22,10 @@ public class StartUI {
                     System.out.println(item[i]);
                 }
             } else if (select == 2) {
-                int id = Integer.valueOf(scanner.nextLine());
                 System.out.println("введите id заявки");
-                String name = scanner.nextLine();
+                int id = Integer.valueOf(scanner.nextLine());
                 System.out.println("введите название");
+                String name = scanner.nextLine();
                 Item item = new Item(name);
                 if (tracker.replace(id, item)) {
                     System.out.println("успешно");
@@ -33,9 +33,34 @@ public class StartUI {
                     System.out.println("error");
                 }
             } else if (select == 3) {
-                System.out.println();
+                System.out.println("введите id заявки");
+                int id = Integer.valueOf(scanner.nextLine());
+                if (tracker.delete(id)) {
+                    System.out.println("успешно");
+                } else {
+                    System.out.println("error");
+                }
+
             } else if (select == 4) {
-                System.out.println();
+                System.out.println("введите id заявки");
+                int id = Integer.valueOf(scanner.nextLine());
+                Item item = tracker.findById(id);
+                if (item == null) {
+                    System.out.println("\"Заявка с таким id не найдена\".");
+                } else {
+                    System.out.println(item);
+                }
+            } else if (select == 5) {
+                System.out.println("введите название");
+                String name = scanner.nextLine();
+                Item[] item = tracker.findByName(name);
+                for (int i = 0; i < item.length; i++) {
+                    if (item.length > 0) {
+                        System.out.println(item[i]);
+                    } else {
+                        System.out.println("Заявки с таким именем не найдены.");
+                    }
+                }
             } else if (select == 6) {
                 run = false;
             }
