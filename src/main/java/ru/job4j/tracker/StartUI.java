@@ -21,13 +21,10 @@ public class StartUI {
                 Item[] items = tracker.findAll();
                 if (items.length > 0) {
                     for (Item item : items) {
-                        System.out.println(item);
+                        System.out.println(item.toString());
                     }
                 } else {
                     System.out.println("Хранилище еще не содержит заявок");
-                }
-                for (Item item : items) {
-                    System.out.println(item);
                 }
             } else if (select == 6) {
                 run = false;
