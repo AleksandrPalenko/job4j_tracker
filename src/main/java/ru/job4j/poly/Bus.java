@@ -16,4 +16,5 @@ public class Bus implements Transport {
     public int fill(int fuel) {
         return fuel * 40;
     }
+
 }
