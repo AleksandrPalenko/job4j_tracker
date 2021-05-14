@@ -8,13 +8,13 @@ public class Bus implements Transport {
     }
 
     @Override
-    public int passengers(int members) {
+    public void passengers(int members) {
         if (members < 100) {
             System.out.println("Bus is driving");
         } else {
             System.out.println("Bus is not driving");
         }
-        return members;
+
     }
 
     @Override
