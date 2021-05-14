@@ -68,7 +68,6 @@ public class Tracker {
             System.arraycopy(items, index + 1, items, index, this.size - index - 1);
             items[size - 1] = null;
             size--;
-        } else {
             return true;
         }
         return false;
