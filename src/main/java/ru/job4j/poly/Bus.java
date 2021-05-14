@@ -3,13 +3,18 @@ package ru.job4j.poly;
 public class Bus implements Transport {
 
     @Override
-    public String drive() {
-        return null;
+    public void drive() {
+        System.out.println("Bus is driving");
     }
 
     @Override
     public int passengers(int members) {
-        return 0;
+        if (members < 100) {
+            System.out.println("Bus is driving");
+        } else {
+            System.out.println("Bus is not driving");
+        }
+        return members;
     }
 
     @Override
