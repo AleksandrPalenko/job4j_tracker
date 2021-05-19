@@ -56,6 +56,32 @@ public class StartUITest {
         assertThat(tracker.findById(item.getId()), is(nullValue()));
     }
 
+    @Test
+    public void whenFindByName() {
+        Output out = new StubOutput();
+        Input in = new StubInput(
+                new String[]{"0", "car", "1"}
+        );
+        Tracker tracker = new Tracker();
+        Item item = tracker.add(new Item("car"));
+        String input = System.lineSeparator();
+        UserAction[] actions = {
+                new FindNameAction(out),
+                new ExitAction(out)
+        };
+        new StartUI(out).init(in, tracker, actions);
+        assertThat(out.toString(), is(
+                "Menu." + input +
+                        "0. Find items by name" + input +
+                        "1. Exit program" + input +
+                        "Enter name: " + item + input +
+                        "Item{id=1, name='car'}" + input +
+                        "Menu." + input +
+                        "0. Find items by name" + input +
+                        "1. Exit program" + input
 
+
+        ));
+    }
 
 }
