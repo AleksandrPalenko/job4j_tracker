@@ -11,4 +11,5 @@ public class FactTest {
         int rsl = Fact.calc(-2);
     }
 
+
 }
