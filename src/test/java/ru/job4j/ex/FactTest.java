@@ -6,10 +6,10 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
 public class FactTest {
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void calcTest() {
-        int rsl = Fact.calc(3);
-        assertThat(rsl,is(6));
+        int rsl = Fact.calc(-2);
+        assertThat(rsl,is(2));
     }
 
 }
