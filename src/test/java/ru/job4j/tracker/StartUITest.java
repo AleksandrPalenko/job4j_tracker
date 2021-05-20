@@ -82,11 +82,12 @@ public class StartUITest {
 
         ));
     }
+
     @Test
     public void FindAllAction() {
         Output out = new StubOutput();
         Input in = new StubInput(
-                new String[]{"0","1"}
+                new String[]{"0", "1"}
         );
         Tracker tracker = new Tracker();
         Item item = tracker.add(new Item("car"));
@@ -116,7 +117,7 @@ public class StartUITest {
                 new String[]{"0", "2", "1"}
         );
         Tracker tracker = new Tracker();
-        Item item = new Item(2, "job4j");
+        Item item = tracker.add(new Item(2, "job4j"));
         String input = System.lineSeparator();
         UserAction[] actions = {
                 new FindItemAction(out),
@@ -132,5 +133,29 @@ public class StartUITest {
                         "0. Find item by id" + input +
                         "1. Exit program" + input
         ));
+    }
+
+    @Test
+    public void whenInvalidExit() {
+        Output out = new StubOutput();
+        Input in = new StubInput(
+                new String[]{"0", "15"}
+        );
+        Tracker tracker = new Tracker();
+        UserAction[] actions = new UserAction[]{
+                new ExitAction(out)
+        };
+        new StartUI(out).init(in, tracker, actions);
+        String ln = System.lineSeparator();
+        assertThat(out.toString(), is(
+                "Menu." + ln
+                        + "0. Exit" + ln
+                        + "15. " + ln
+                        + "Wrong input, you can select: 0 .. 0" + ln
+                        + "Menu." + ln
+                        + "0. Exit" + ln
+
+                )
+        );
     }
 }
