@@ -19,3 +19,4 @@ public class StubOutput implements Output {
     }
 }
 
+

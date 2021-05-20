@@ -74,8 +74,7 @@ public class StartUITest {
                 "Menu." + input +
                         "0. Find items by name" + input +
                         "1. Exit program" + input +
-                        "Enter name: " + item + input +
-                        "Item{id=1, name='car'}" + input +
+                        item + input +
                         "Menu." + input +
                         "0. Find items by name" + input +
                         "1. Exit program" + input
@@ -83,6 +82,55 @@ public class StartUITest {
 
         ));
     }
+    @Test
+    public void FindAllAction() {
+        Output out = new StubOutput();
+        Input in = new StubInput(
+                new String[]{"0","1"}
+        );
+        Tracker tracker = new Tracker();
+        Item item = tracker.add(new Item("car"));
+        String input = System.lineSeparator();
+        UserAction[] actions = {
+                new ShowAllAction(out),
+                new ExitAction(out)
+        };
+        new StartUI(out).init(in, tracker, actions);
+        assertThat(out.toString(), is(
+                "Menu." + input +
+                        "0. Show all Items" + input +
+                        "1. Exit program" + input +
+                        "=== Show all items ====" + input +
+                        item + input +
+                        "Menu." + input +
+                        "0. Show all Items" + input +
+                        "1. Exit program" + input
 
+        ));
+    }
 
+    @Test
+    public void FindByIdAction() {
+        Output out = new StubOutput();
+        Input in = new StubInput(
+                new String[]{"0", "2", "1"}
+        );
+        Tracker tracker = new Tracker();
+        Item item = new Item(2, "job4j");
+        String input = System.lineSeparator();
+        UserAction[] actions = {
+                new FindItemAction(out),
+                new ExitAction(out)
+        };
+        new StartUI(out).init(in, tracker, actions);
+        assertThat(out.toString(), is(
+                "Menu." + input +
+                        "0. Find item by id" + input +
+                        "1. Exit program" + input +
+                        item + input +
+                        "Menu." + input +
+                        "0. Find item by id" + input +
+                        "1. Exit program" + input
+        ));
+    }
 }
