@@ -113,11 +113,11 @@ public class StartUITest {
     @Test
     public void FindByIdAction() {
         Output out = new StubOutput();
-        Input in = new StubInput(
-                new String[]{"0", "2", "1"}
-        );
         Tracker tracker = new Tracker();
         Item item = tracker.add(new Item(2, "job4j"));
+        Input in = new StubInput(
+                new String[]{"0", String.valueOf(item.getId()), "1"}
+        );
         String input = System.lineSeparator();
         UserAction[] actions = {
                 new FindItemAction(out),
@@ -149,10 +149,10 @@ public class StartUITest {
         String ln = System.lineSeparator();
         assertThat(out.toString(), is(
                 "Menu." + ln
-                        + "0. Exit Program" + ln
+                        + "0. Exit program" + ln
                         + "Wrong input, you can select: 0 .. 0" + ln
                         + "Menu." + ln
-                        + "0. Exit Program" + ln
+                        + "0. Exit program" + ln
 
                 )
         );
