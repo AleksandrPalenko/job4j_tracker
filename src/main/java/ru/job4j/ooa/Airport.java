@@ -7,8 +7,7 @@ public class Airport {
         airbus.printCountEngine();
 
         airbus.setName("A380");
-        airbus.setCountEngine(4);
         airbus.printModel();
-        System.out.println("Количество двигателей равно: " + airbus.getCountEngine());
+        airbus.printCountEngine();
     }
 }
