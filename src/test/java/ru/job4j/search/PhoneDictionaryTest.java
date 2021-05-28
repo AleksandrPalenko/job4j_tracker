@@ -24,10 +24,10 @@ public class PhoneDictionaryTest {
     public void whenFindNothing() {
         PhoneDictionary phones = new PhoneDictionary();
         phones.add(
-                new Person("null", "null", "null", "null")
+                new Person("Petr", "Arsentev", "534872", "Bryansk")
         );
         ArrayList<Person> persons = phones.find("null");
-        assertThat(persons.get(0).getSurname(), is("null"));
+        assertThat(persons.isEmpty(), is("Arsentev"));
     }
 
 }
