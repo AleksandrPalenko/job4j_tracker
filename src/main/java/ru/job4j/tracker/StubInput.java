@@ -10,7 +10,7 @@ public class StubInput implements Input {
 
     public StubInput(String[] answer) {
         this.answer = Arrays.asList(answer);
-        ///this.answer = answer;
+        ////this.answer = answer;
     }
 
     @Override

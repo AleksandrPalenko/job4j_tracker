@@ -15,7 +15,7 @@ public class StartUI {
         while (run) {
             this.showMenu(actions);
             int select = input.askInt("Select: ");
-            int size = actions.size(); //добавили размер листа
+            int size = actions.size(); ///добавили размер листа
             if (select < 0 || select >= size) {
                 out.println("Wrong input, you can select: 0 .. " + (size - 1));
                 continue;

@@ -7,11 +7,11 @@ public class ExitAction implements UserAction {
         this.out = out;
     }
 
-
     @Override
     public String name() {
         return "Exit program";
     }
+
 
     @Override
     public boolean execute(Input input, Tracker tracker) {
