@@ -18,11 +18,11 @@ public class ShowAllAction implements UserAction {
     @Override
     public boolean execute(Input input, Tracker tracker) {
         out.println("=== Show all items ====");
-        List<List<Item>> items = Arrays.asList(tracker.findAll());
+        List<Item> items = tracker.findAll();
         //Item[] items = tracker.findAll();
         int size = items.size(); //добавили размер листа
         if (size > 0) {
-            for (List<Item> item : items) {
+            for (Item item : items) {
                 out.println(item);
             }
         } else {

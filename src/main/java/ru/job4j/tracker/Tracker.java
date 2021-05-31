@@ -31,16 +31,14 @@ public class Tracker {
     }
 
     public List<Item> findByName(String key) {
-        Item[] otherName = new Item[this.size];
-        int sizeName = 0;
+        List<Item> otherName = new ArrayList<>();
         for (int i = 0; i < this.size; i++) {
             Item item = items.get(i);
             if (key.equals(item.getName())) {
-                otherName[sizeName] = item;
-                sizeName++;
+                otherName.add(item);
             }
         }
-        return List.copyOf(items);
+        return List.copyOf(otherName);
         //return Arrays.copyOf(otherName, sizeName);
     }
 
