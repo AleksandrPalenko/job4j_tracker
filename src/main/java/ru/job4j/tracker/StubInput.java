@@ -1,16 +1,22 @@
 package ru.job4j.tracker;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class StubInput implements Input {
-    private String[] answer;
+    private List<String> answer;
+    //private  String[] answer;
     private int position = 0;
 
     public StubInput(String[] answer) {
-        this.answer = answer;
+        this.answer = Arrays.asList(answer);
+        //this.answer = answer;
     }
 
     @Override
     public String askStr(String question) {
-        return answer[position++];
+        return answer.get(position++);
+        //return answer[position++];
     }
 
     @Override
