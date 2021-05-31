@@ -9,9 +9,8 @@ public class ConvertList {
         List<Integer> rsl = new ArrayList<>();
         for (int[] row : list) {
             for (int cell : row) {
-                list.add(cell, row);
+                rsl.add(cell);
             }
-
         }
         return rsl;
     }
