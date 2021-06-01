@@ -18,7 +18,7 @@ public class FindNameAction implements UserAction {
 
     @Override
     public boolean execute(Input input, Tracker tracker) {
-        String name = input.askStr("Enter name: ");
+        List<String> name = input.askStr("Enter name: ");
         List<List<Item>> items = Arrays.asList(tracker.findByName(name));
         ////Item[] items = tracker.findByName(name);
         int size = items.size(); //добавили размер листа

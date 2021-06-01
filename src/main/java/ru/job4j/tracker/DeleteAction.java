@@ -1,5 +1,7 @@
 package ru.job4j.tracker;
 
+import java.util.List;
+
 public class DeleteAction implements UserAction {
     private final Output out;
 
@@ -15,7 +17,7 @@ public class DeleteAction implements UserAction {
     @Override
     public boolean execute(Input input, Tracker tracker) {
             out.println("=== Delete item ====");
-        int id = input.askInt("Enter id:  ");
+        List<Integer> id = input.askInt("Enter id:  ");
         if (tracker.delete(id)) {
             out.println("Заявка удалена успешно.");
         } else {

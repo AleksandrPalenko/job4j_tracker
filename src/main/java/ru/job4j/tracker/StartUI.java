@@ -14,10 +14,9 @@ public class StartUI {
         boolean run = true;
         while (run) {
             this.showMenu(actions);
-            int select = input.askInt("Select: ");
-            int size = actions.size(); ///добавили размер листа
-            if (select < 0 || select >= size) {
-                out.println("Wrong input, you can select: 0 .. " + (size - 1));
+            List<Integer> select = input.askInt("Select: ");
+            if (select < 0 || select >= actions.size()) {
+                out.println("wrong input, you can select: 0.. " + (actions.size() - 1));
                 continue;
             }
             UserAction action = actions.get(select);

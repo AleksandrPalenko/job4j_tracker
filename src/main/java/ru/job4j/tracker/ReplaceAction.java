@@ -1,5 +1,7 @@
 package ru.job4j.tracker;
 
+import java.util.List;
+
 public class ReplaceAction implements UserAction {
     private final Output out;
     public ReplaceAction(Output out) {
@@ -14,8 +16,8 @@ public class ReplaceAction implements UserAction {
     @Override
     public boolean execute(Input input, Tracker tracker) {
             out.println("=== Edit item ====");
-        int id = input.askInt("Enter id: ");
-        String name = input.askStr("Enter name: ");
+        List<Integer> id = input.askInt("Enter id: ");
+        List<String> name = input.askStr("Enter name: ");
         Item item = new Item(name);
         if (tracker.replace(id, item)) {
                 out.println("Заявка изменена успешно.");

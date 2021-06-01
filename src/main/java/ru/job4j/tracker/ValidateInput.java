@@ -1,5 +1,8 @@
 package ru.job4j.tracker;
 
+import java.util.Collections;
+import java.util.List;
+
 public class ValidateInput implements Input {
 
     private final Output out;
@@ -11,14 +14,14 @@ public class ValidateInput implements Input {
     }
 
     @Override
-    public String askStr(String question) {
+    public List<String> askStr(String question) {
         return in.askStr(question);
     }
 
     @Override
-    public int askInt(String question) {
+    public List<Integer> askInt(String question) {
         boolean invalid = true;
-        int value = -1;
+        List<Integer> value = Collections.singletonList(-1);
         do {
             try {
                 value = in.askInt(question);
