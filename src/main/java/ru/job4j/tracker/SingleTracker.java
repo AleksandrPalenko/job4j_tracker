@@ -4,7 +4,6 @@ import java.util.List;
 
 public class SingleTracker {
     private Tracker tracker = new Tracker();
-
     private static SingleTracker instance = null;
 
     private SingleTracker() {
@@ -38,4 +37,5 @@ public class SingleTracker {
         }
         return instance;
     }
+
 }

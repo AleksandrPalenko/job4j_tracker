@@ -18,12 +18,11 @@ public class FindNameAction implements UserAction {
 
     @Override
     public boolean execute(Input input, Tracker tracker) {
-        List<String> name = input.askStr("Enter name: ");
-        List<List<Item>> items = Arrays.asList(tracker.findByName(name));
-        ////Item[] items = tracker.findByName(name);
+        String name = input.askStr("Enter name: ");
+        List<Item> items = tracker.findByName(name);
         int size = items.size(); //добавили размер листа
         if (size > 0) {
-            for (List<Item> item : items) {
+            for (Item item : items) {
                 out.println(item);
             }
         } else {

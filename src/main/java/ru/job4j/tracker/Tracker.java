@@ -5,18 +5,20 @@ import java.util.List;
 
 public class Tracker {
     private final List<Item> items = new ArrayList<>();
+    private int ids = 1;
 
     public Item add(Item item) {
+        item.setId(ids++);
         items.add(item);
         return item;
     }
 
-    public Item findById(List<Integer> id) {
+    public Item findById(int id) {
         int index = indexOf(id);
         return index != -1 ? items.get(index) : null;
     }
 
-    public List<Item> findByName(List<String> key) {
+    public List<Item> findByName(String key) {
         List<Item> otherName = new ArrayList<>();
         for (Item item : items) {
             if (key.equals(item.getName())) {
@@ -27,15 +29,10 @@ public class Tracker {
     }
 
     public List<Item> findAll() {
-        for (Item value : items) {
-            if (value != null) {
-                items.add(value);
-            }
-        }
-        return List.copyOf(items);
+        return new ArrayList<Item>(items);
     }
 
-    private int indexOf(List<Integer> id) {
+    private int indexOf(int id) {
         int rsl = -1;
         for (int index = 0; index < items.size(); index++) {
             if (items.get(index).getId() == id) {
@@ -46,17 +43,17 @@ public class Tracker {
         return rsl;
     }
 
-    public boolean replace(List<Integer> id, Item item) {
+    public boolean replace(int id, Item item) {
         int index = indexOf(id);
-        if (index != -1) {
+        boolean rsl = index != -1;
+        if (rsl) {
             item.setId(id);
             items.set(index, item);
-            // items[index] = item;
         }
-        return true;
+        return rsl;
     }
 
-    public boolean delete(List<Integer> id) {
+    public boolean delete(int id) {
         int index = indexOf(id);
         boolean rsl = index != -1;
         if (rsl) {
@@ -65,3 +62,4 @@ public class Tracker {
         return rsl;
     }
 }
+

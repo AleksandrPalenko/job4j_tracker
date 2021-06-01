@@ -9,12 +9,11 @@ import static org.hamcrest.core.IsNull.nullValue;
 import static org.junit.Assert.*;
 
 public class StartUITest {
-
     @Test
     public void whenCreateItem() {
         Output out = new StubOutput();
         Input in = new StubInput(
-                Arrays.asList(new String[]{"0", "Item name", "1"})
+                new String[]{"0", "Item name", "1"}
         );
         Tracker tracker = new Tracker();
         UserAction[] actions = {
@@ -24,7 +23,6 @@ public class StartUITest {
         new StartUI(out).init(in, tracker, Arrays.asList(actions));
         assertThat(tracker.findAll().get(0).getName(), is("Item name"));
     }
-
     @Test
     public void whenReplaceItem() {
         Output out = new StubOutput();
@@ -32,7 +30,7 @@ public class StartUITest {
         Item item = tracker.add(new Item("Replaced item"));
         String replacedName = "New item name";
         Input in = new StubInput(
-                Arrays.asList(new String[]{"0", String.valueOf(item.getId()), replacedName, "1"})
+                new String[]{"0", String.valueOf(item.getId()), replacedName, "1"}
         );
         UserAction[] actions = {
                 new ReplaceAction(out),
@@ -41,14 +39,13 @@ public class StartUITest {
         new StartUI(out).init(in, tracker, Arrays.asList(actions));
         assertThat(tracker.findById(item.getId()).getName(), is(replacedName));
     }
-
     @Test
     public void whenDeleteItem() {
         Output out = new StubOutput();
         Tracker tracker = new Tracker();
         Item item = tracker.add(new Item("Deleted item"));
         Input in = new StubInput(
-                Arrays.asList(new String[]{"0", String.valueOf(item.getId()), "1"})
+                new String[]{"0", String.valueOf(item.getId()), "1"}
         );
         UserAction[] actions = {
                 new DeleteAction(out),
@@ -57,14 +54,13 @@ public class StartUITest {
         new StartUI(out).init(in, tracker, Arrays.asList(actions));
         assertThat(tracker.findById(item.getId()), is(nullValue()));
     }
-
     @Test
     public void whenFindByName() {
         Output out = new StubOutput();
         Tracker tracker = new Tracker();
         Item item = tracker.add(new Item("car"));
         Input in = new StubInput(
-                Arrays.asList(new String[]{"0", "car", "1"})
+                new String[]{"0", "car", "1"}
         );
         String input = System.lineSeparator();
         UserAction[] actions = {
@@ -80,16 +76,13 @@ public class StartUITest {
                         "Menu." + input +
                         "0. Find items by name" + input +
                         "1. Exit program" + input
-
-
         ));
     }
-
     @Test
     public void FindAllAction() {
         Output out = new StubOutput();
         Input in = new StubInput(
-                Arrays.asList(new String[]{"0", "1"})
+                new String[]{"0", "1"}
         );
         Tracker tracker = new Tracker();
         Item item = tracker.add(new Item("car"));
@@ -108,17 +101,15 @@ public class StartUITest {
                         "Menu." + input +
                         "0. Show all Items" + input +
                         "1. Exit program" + input
-
         ));
     }
-
     @Test
     public void FindByIdAction() {
         Output out = new StubOutput();
         Tracker tracker = new Tracker();
         Item item = tracker.add(new Item(2, "job4j"));
         Input in = new StubInput(
-                Arrays.asList(new String[]{"0", String.valueOf(item.getId()), "1"})
+                new String[]{"0", String.valueOf(item.getId()), "1"}
         );
         String input = System.lineSeparator();
         UserAction[] actions = {
@@ -136,12 +127,11 @@ public class StartUITest {
                         "1. Exit program" + input
         ));
     }
-
     @Test
     public void whenInvalidExit() {
         Output out = new StubOutput();
         Input in = new StubInput(
-                Arrays.asList(new String[]{"15", "0"})
+                new String[]{"15", "0"}
         );
         Tracker tracker = new Tracker();
         UserAction[] actions = new UserAction[]{

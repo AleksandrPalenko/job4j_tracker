@@ -21,10 +21,6 @@ public class Item {
         this.name = name;
     }
 
-    public Item(List<String> name) {
-    }
-
-
     public LocalDateTime getCreated() {
         return created;
     }
@@ -33,7 +29,7 @@ public class Item {
         return id;
     }
 
-    public void setId(List<Integer> id) {
+    public void setId(int id) {
         this.id = id;
     }
 

@@ -7,21 +7,20 @@ public class ValidateInput implements Input {
 
     private final Output out;
     private final Input in;
-
     public ValidateInput(Output out, Input input) {
         this.out = out;
         this.in = input;
     }
 
     @Override
-    public List<String> askStr(String question) {
+    public String askStr(String question) {
         return in.askStr(question);
     }
 
     @Override
-    public List<Integer> askInt(String question) {
+    public int askInt(String question) {
         boolean invalid = true;
-        List<Integer> value = Collections.singletonList(-1);
+        int value = -1;
         do {
             try {
                 value = in.askInt(question);
