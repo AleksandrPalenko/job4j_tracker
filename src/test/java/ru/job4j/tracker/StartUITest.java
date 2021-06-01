@@ -127,6 +127,7 @@ public class StartUITest {
                         "1. Exit program" + input
         ));
     }
+
     @Test
     public void whenInvalidExit() {
         Output out = new StubOutput();
