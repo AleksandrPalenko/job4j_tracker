@@ -3,6 +3,7 @@ package ru.job4j.tracker;
 import java.util.Arrays;
 import java.util.List;
 
+
 public class StubInput implements Input {
     private List<String> answer;
 

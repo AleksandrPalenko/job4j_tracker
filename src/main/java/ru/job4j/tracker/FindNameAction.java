@@ -1,7 +1,7 @@
 package ru.job4j.tracker;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+
 import java.util.List;
 
 public class FindNameAction implements UserAction {
