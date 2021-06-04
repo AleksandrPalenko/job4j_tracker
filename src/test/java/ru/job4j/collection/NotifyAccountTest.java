@@ -36,7 +36,7 @@ public class NotifyAccountTest {
                         new Account("100", "Bon Jovy", "fDqwe123q")
                 )
         );
-
+        assertThat(NotifyAccount.sent(accounts), is(expect));
     }
 
 }
