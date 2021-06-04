@@ -12,4 +12,5 @@ public class NotifyAccount {
         }
         return rsl;
     }
+
 }
