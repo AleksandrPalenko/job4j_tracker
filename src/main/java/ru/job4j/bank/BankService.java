@@ -17,8 +17,8 @@ public class BankService {
         User user = findByPassport(passport); //находим пользователя по паспотрту
         if (user != null) {
             List<Account> userAccount = users.get(user); //получем список всех счетов пользователя
-            // далее проверяем,что такого счета нет и что полученный выше список не содержит добавляемый аккаунт
-            if (!users.containsKey(account) && !userAccount.contains(user)) {
+            // проверияем что полученный выше список не содержит добавляемый аккаунт
+            if (!userAccount.contains(user)) {
                 userAccount.add(account); //добавляем новый счет пользователю
             }
         }
