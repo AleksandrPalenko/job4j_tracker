@@ -10,19 +10,15 @@ public class BankService {
     private Map<User, List<Account>> users = new HashMap<>();
 
     public void addUser(User user) {
-        if (!users.containsKey(user)) {
-            users.put(user, new ArrayList<Account>());
-        } else {
-            System.out.println("user is already in the List");
-        }
-
+        users.putIfAbsent(user, new ArrayList<Account>());
     }
 
     public void addAccount(String passport, Account account) {
         User user = findByPassport(passport); //находим пользователя по паспотрту
         if (user != null) {
             List<Account> userAccount = users.get(user); //получем список всех счетов пользователя
-            if (!users.containsKey(account)) {
+            // далее проверяем,что такого счета нет и что полученный выше список не содержит добавляемый аккаунт
+            if (!users.containsKey(account) && !userAccount.contains(user)) {
                 userAccount.add(account); //добавляем новый счет пользователю
             }
         }
@@ -31,8 +27,9 @@ public class BankService {
     public User findByPassport(String passport) {
         User rsl = null;
         for (User value : users.keySet()) {
-            if (value.getPassport().contains(passport)) {
+            if (value.getPassport().equals(passport)) {
                 rsl = value;
+                break;
             }
         }
         return rsl;
@@ -41,9 +38,12 @@ public class BankService {
     public Account findByRequisite(String passport, String requisite) {
         Account rsl = null;
         User user = findByPassport(passport);
-        for (Account account : users.get(user)) {
-            if (account.getRequisite().contains(requisite) && user != null) {
-                rsl = account;
+        if (user != null) {
+            for (Account account : users.get(user)) {
+                if (account.getRequisite().equals(requisite)) {
+                    rsl = account;
+                    break;
+                }
             }
         }
 

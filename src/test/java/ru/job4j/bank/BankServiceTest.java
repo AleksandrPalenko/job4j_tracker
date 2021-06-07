@@ -52,4 +52,5 @@ public class BankServiceTest {
         bank.addAccount(user.getPassport(), new Account("1122", 300D));
         assertThat(bank.findByRequisite("3434", "1122").getBalance(), is(300D));
     }
+
 }
