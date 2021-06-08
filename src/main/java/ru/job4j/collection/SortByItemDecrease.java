@@ -10,4 +10,5 @@ public class SortByItemDecrease implements Comparator<Item> {
     public int compare(Item first, Item second) {
         return first.getName().compareTo(second.getName());
     }
+
 }

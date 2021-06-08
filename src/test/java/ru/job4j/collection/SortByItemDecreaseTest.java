@@ -4,27 +4,25 @@ import org.junit.Test;
 import ru.job4j.tracker.Item;
 
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
-public class SortByItemIncreaseTest {
-
+public class SortByItemDecreaseTest {
     @Test
     public void compare() {
         List<Item> items = Arrays.asList(
-                new Item(1, "Apple"),
-                new Item(2, "Huaway"),
-                new Item(4, "Sumsung")
+                new Item(4, "Audi"),
+                new Item(2, "Bently"),
+                new Item(1, "Lada")
         );
         List<Item> expect = Arrays.asList(
-                new Item(1, "Apple"),
-                new Item(2, "Huaway"),
-                new Item(4, "Sumsung")
+                new Item(4, "Audi"),
+                new Item(2, "Bently"),
+                new Item(1, "Lada")
         );
         assertThat(items, is(expect));
     }
+
 }

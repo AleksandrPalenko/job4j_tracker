@@ -14,5 +14,4 @@ public class SortByItemIncrease implements Comparator<Item> {
     public int compare(Item first, Item second) {
         return second.getName().compareTo(first.getName());
     }
-
 }
