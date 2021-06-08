@@ -4,6 +4,7 @@ import org.junit.Test;
 import ru.job4j.tracker.Item;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static org.hamcrest.core.Is.is;
@@ -13,16 +14,18 @@ public class SortByItemDecreaseTest {
     @Test
     public void compare() {
         List<Item> items = Arrays.asList(
-                new Item(4, "Audi"),
+                new Item(1, "Lada"),
                 new Item(2, "Bently"),
-                new Item(1, "Lada")
+                new Item(4, "Audi")
         );
         List<Item> expect = Arrays.asList(
                 new Item(4, "Audi"),
                 new Item(2, "Bently"),
                 new Item(1, "Lada")
         );
+        Collections.sort(items, new SortByItemDecrease());
         assertThat(items, is(expect));
+
     }
 
 }
