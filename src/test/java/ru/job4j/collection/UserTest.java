@@ -30,5 +30,4 @@ public class UserTest {
                 );
         assertThat(rsl, greaterThan(0));
     }
-
 }
