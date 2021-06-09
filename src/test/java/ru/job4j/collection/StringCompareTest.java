@@ -18,6 +18,7 @@ public class StringCompareTest {
         assertThat(rst, is(0));
     }
 
+
     @Test
     public void whenLeftLessThanRightResultShouldBeNegative () {
         StringCompare compare = new StringCompare();
