@@ -11,10 +11,10 @@ public class Student {
     }
 
     public static void main(String[] args) {
-        Student Petya = new Student();
+        Student Bob = new Student();
         for (int i = 0; i < 3; i++) {
-            Petya.music();
-            Petya.song();
+            Bob.music();
+            Bob.song();
         }
     }
 }

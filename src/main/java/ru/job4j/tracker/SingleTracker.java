@@ -4,12 +4,11 @@ import java.util.List;
 
 public class SingleTracker {
     private Tracker tracker = new Tracker();
+
     private static SingleTracker instance = null;
 
     private SingleTracker() {
-
     }
-
 
     public Item add(Item item) {
         return tracker.add(item);

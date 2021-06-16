@@ -23,6 +23,7 @@ public class StartUITest {
         new StartUI(out).init(in, tracker, Arrays.asList(actions));
         assertThat(tracker.findAll().get(0).getName(), is("Item name"));
     }
+
     @Test
     public void whenReplaceItem() {
         Output out = new StubOutput();
@@ -39,6 +40,7 @@ public class StartUITest {
         new StartUI(out).init(in, tracker, Arrays.asList(actions));
         assertThat(tracker.findById(item.getId()).getName(), is(replacedName));
     }
+
     @Test
     public void whenDeleteItem() {
         Output out = new StubOutput();
@@ -54,6 +56,7 @@ public class StartUITest {
         new StartUI(out).init(in, tracker, Arrays.asList(actions));
         assertThat(tracker.findById(item.getId()), is(nullValue()));
     }
+
     @Test
     public void whenFindByName() {
         Output out = new StubOutput();
@@ -69,17 +72,18 @@ public class StartUITest {
         };
         new StartUI(out).init(in, tracker, Arrays.asList(actions));
         assertThat(out.toString(), is(
-                "Menu." + input +
-                        "0. Find items by name" + input +
-                        "1. Exit program" + input +
-                        item + input +
-                        "Menu." + input +
-                        "0. Find items by name" + input +
-                        "1. Exit program" + input
+                "Menu." + input
+                        + "0. Find items by name" + input
+                        + "1. Exit program" + input
+                        + item + input
+                        + "Menu." + input
+                        + "0. Find items by name" + input
+                        + "1. Exit program" + input
         ));
     }
+
     @Test
-    public void FindAllAction() {
+    public void whenFindAllAction() {
         Output out = new StubOutput();
         Input in = new StubInput(
                 new String[]{"0", "1"}
@@ -93,14 +97,14 @@ public class StartUITest {
         };
         new StartUI(out).init(in, tracker, Arrays.asList(actions));
         assertThat(out.toString(), is(
-                "Menu." + input +
-                        "0. Show all Items" + input +
-                        "1. Exit program" + input +
-                        "=== Show all items ====" + input +
-                        item + input +
-                        "Menu." + input +
-                        "0. Show all Items" + input +
-                        "1. Exit program" + input
+                "Menu." + input
+                        + "0. Show all Items" + input
+                        + "1. Exit program" + input
+                        + "=== Show all items ====" + input
+                        + item + input
+                        + "Menu." + input
+                        + "0. Show all Items" + input
+                        + "1. Exit program" + input
         ));
     }
     @Test
@@ -118,13 +122,13 @@ public class StartUITest {
         };
         new StartUI(out).init(in, tracker, Arrays.asList(actions));
         assertThat(out.toString(), is(
-                "Menu." + input +
-                        "0. Find item by id" + input +
-                        "1. Exit program" + input +
-                        item + input +
-                        "Menu." + input +
-                        "0. Find item by id" + input +
-                        "1. Exit program" + input
+                "Menu." + input
+                        + "0. Find item by id" + input
+                        + "1. Exit program" + input
+                        + item + input
+                        + "Menu." + input
+                        + "0. Find item by id" + input
+                        + "1. Exit program" + input
         ));
     }
 
@@ -146,8 +150,6 @@ public class StartUITest {
                         + "Wrong input, you can select: 0 .. 0" + ln
                         + "Menu." + ln
                         + "0. Exit program" + ln
-
-
                 )
         );
     }
