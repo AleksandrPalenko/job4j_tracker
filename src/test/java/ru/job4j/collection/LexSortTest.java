@@ -8,6 +8,7 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
 public class LexSortTest {
+
     @Test
     public void sortNum1and2and10() {
         String[] input = {
@@ -23,5 +24,4 @@ public class LexSortTest {
         Arrays.sort(input, new LexSort());
         assertThat(input, is(out));
     }
-
 }
