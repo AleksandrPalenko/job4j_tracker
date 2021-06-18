@@ -8,6 +8,7 @@ import java.util.Map;
 /**
  * Класс описывает работу простейшей очереди по приоритету, которая работает
  * по принципу FIFO (first in - first out)
+ *
  * @author Aleksandr Palenko
  * @version 1.0
  */
@@ -17,15 +18,19 @@ public class BankService {
      * Хранение задания осуществляется в коллекции типа HashMap
      */
     private Map<User, List<Account>> users = new HashMap<>();
+
     /**
      * @param user аккаунт добваляется в систему
      */
+
     public void addUser(User user) {
-        users.putIfAbsent(user, new ArrayList<Account>());
+        users.putIfAbsent(user, new ArrayList<>());
     }
+
     /**
      * @param account добваляется счет к пользователю
      */
+
     public void addAccount(String passport, Account account) {
         User user = findByPassport(passport); //находим пользователя по паспотрту
         if (user != null) {
@@ -36,10 +41,13 @@ public class BankService {
             }
         }
     }
+
     /**
      * Метод ищет пользователя по номеру паспорта
+     *
      * @return возвращает пользователя или null если такого пользователя нет
      */
+
     public User findByPassport(String passport) {
         User rsl = null;
         for (User value : users.keySet()) {
@@ -50,10 +58,13 @@ public class BankService {
         }
         return rsl;
     }
+
     /**
      * Метод ищет пользователя по реквизитам счета
+     *
      * @return возвращает пользователя или null если такого пользователя нет
      */
+
     public Account findByRequisite(String passport, String requisite) {
         Account rsl = null;
         User user = findByPassport(passport);
@@ -68,12 +79,16 @@ public class BankService {
 
         return rsl;
     }
+
     /**
      * Метод для перечисления денег с одного счёта на другой счёт.
-     * Если счёт не найден или не хватает денег на счёте srcAccount (с которого переводят), то метод должен вернуть false
+     * Если счёт не найден или не хватает денег на счёте srcAccount (с которого переводят),
+     * то метод должен вернуть false
+     *
      * @return возвращает true или false, если одного из счетов не существует
      * и если сумма перечисление денег превышает суммы денег на счете
      */
+
     public boolean transferMoney(String srcPassport, String srcRequisite,
                                  String destPassport, String destRequisite,
                                  double amount) {
