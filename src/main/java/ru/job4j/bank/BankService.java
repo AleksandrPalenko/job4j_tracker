@@ -36,7 +36,7 @@ public class BankService {
         if (user != null) {
             List<Account> userAccount = users.get(user); //получем список всех счетов пользователя
             // проверияем что полученный выше список не содержит добавляемый аккаунт
-            if (!userAccount.contains(user)) {
+            if (!userAccount.contains(account)) {
                 userAccount.add(account); //добавляем новый счет пользователю
             }
         }
@@ -85,7 +85,7 @@ public class BankService {
      * Если счёт не найден или не хватает денег на счёте srcAccount (с которого переводят),
      * то метод должен вернуть false
      *
-     * @return возвращает true или false, если одного из счетов не существует
+     * @return возвращает true или false,  если одного из счетов не существует
      * и если сумма перечисление денег превышает суммы денег на счете
      */
 
