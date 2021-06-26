@@ -17,6 +17,8 @@ public class UniqueText {
             if (!check.contains(values)) {
                 return false;
             }
+
+        }
         return rsl;
     }
 }

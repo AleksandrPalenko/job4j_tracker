@@ -9,11 +9,10 @@ public class Builder extends Engineer {
         super();
     }
 
-    @SuppressWarnings("checkstyle:ParameterNumber")
-    public Builder(String name, String surname, String education, int birthday,
+    public Builder(String name, String education, int birthday,
                    String nameOfProject, String executorOfProject, String nameOfTool,
                    int sizeOfWall) {
-        super(name, surname, education, birthday, nameOfProject, executorOfProject);
+        super(name, education, birthday, nameOfProject, executorOfProject);
         this.nameOfTool = nameOfTool;
         this.sizeOfWall = sizeOfWall;
     }

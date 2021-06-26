@@ -107,8 +107,9 @@ public class StartUITest {
                         + "1. Exit program" + input
         ));
     }
+    
     @Test
-    public void FindByIdAction() {
+    public void whenFindByIdAction() {
         Output out = new StubOutput();
         Tracker tracker = new Tracker();
         Item item = tracker.add(new Item(2, "job4j"));

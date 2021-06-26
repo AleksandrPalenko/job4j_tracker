@@ -22,8 +22,7 @@ public final class Airbus extends Aircraft {
     public int getCountEngine(int engine) {
         return COUNT_ENGINE;
     }
-
-
+    
     @Override
     public void printModel() {
         System.out.println("Модель самолета: " + name);

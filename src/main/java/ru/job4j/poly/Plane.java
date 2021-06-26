@@ -9,6 +9,7 @@ public class Plane implements Vehicle {
 
     @Override
     public void transferOfPassengers() {
-        System.out.println("The " + getClass().getSimpleName() + " transfer passengers through the air");
+        System.out.println("The " + getClass().getSimpleName()
+                + " transfer passengers through the air");
     }
 }

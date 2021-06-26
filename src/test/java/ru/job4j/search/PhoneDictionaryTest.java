@@ -19,7 +19,6 @@ public class PhoneDictionaryTest {
         assertThat(persons.get(0).getSurname(), is("Arsentev"));
     }
 
-
     @Test
     public void whenFindNothing() {
         PhoneDictionary phones = new PhoneDictionary();

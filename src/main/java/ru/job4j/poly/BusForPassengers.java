@@ -9,7 +9,8 @@ public class BusForPassengers implements Vehicle {
 
     @Override
     public void transferOfPassengers() {
-        System.out.println("The " + getClass().getSimpleName() + " transfer passengers on the road. ");
+        System.out.println("The " + getClass().getSimpleName()
+                + " transfer passengers on the road. ");
 
     }
 }

@@ -11,10 +11,6 @@ public class Student {
     }
 
     public static void main(String[] args) {
-        Student Bob = new Student();
-        for (int i = 0; i < 3; i++) {
-            Bob.music();
-            Bob.song();
-        }
+
     }
 }

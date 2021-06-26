@@ -1,6 +1,4 @@
-package ru.job4j.tracker;
-
-import ru.job4j.collection.User;
+package ru.job4j.collection;
 
 public class SortByUserAge implements Comparable<User> {
     @Override

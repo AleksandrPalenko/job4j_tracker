@@ -5,7 +5,7 @@ import java.util.List;
 public class SingleTracker {
     private Tracker tracker = new Tracker();
 
-    private static SingleTracker instance = null;
+    private SingleTracker instance = null;
 
     private SingleTracker() {
     }
@@ -30,7 +30,7 @@ public class SingleTracker {
         return tracker.delete(id);
     }
 
-    public static SingleTracker getInstance() {
+    public SingleTracker getInstance() {
         if (instance == null) {
             instance = new SingleTracker();
         }

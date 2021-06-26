@@ -3,7 +3,6 @@ package ru.job4j.tracker;
 public class ExitAction implements UserAction {
     private final Output out;
 
-
     public ExitAction(Output out) {
         this.out = out;
     }
@@ -13,11 +12,9 @@ public class ExitAction implements UserAction {
         return "Exit program";
     }
 
-
     @Override
     public boolean execute(Input input, Tracker tracker) {
         return false;
-
     }
 }
 

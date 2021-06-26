@@ -9,8 +9,9 @@ public class Doctor extends Profession {
         super();
     }
 
-    public Doctor(String name, String surname, String education, int birthday, int experienceOfWork, String gender) {
-        super(name, surname, education, birthday);
+    public Doctor(String name, String education, int birthday,
+                  int experienceOfWork, String gender) {
+        super(name, education, birthday);
         this.experienceOfWork = experienceOfWork;
         this.gender = gender;
     }
@@ -22,7 +23,6 @@ public class Doctor extends Profession {
     public String getGender() {
         return gender;
     }
-
 
     public void helpToPatient() {
         System.out.println("Пол пациента " + gender);

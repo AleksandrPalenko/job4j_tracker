@@ -8,6 +8,7 @@ public class Train implements Vehicle {
 
     @Override
     public void transferOfPassengers() {
-        System.out.println("The " + getClass().getSimpleName() + " transfer passengers on the rails");
+        System.out.println("The " + getClass().getSimpleName()
+                + " transfer passengers on the rails");
     }
 }

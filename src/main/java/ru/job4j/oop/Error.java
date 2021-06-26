@@ -8,7 +8,6 @@ public class Error {
 
     private String errorMassage;
 
-
     public Error(boolean condition, int errorStatus, String errorMassage) {
         this.condition = condition;
         this.errorStatus = errorStatus;
@@ -19,10 +18,6 @@ public class Error {
         System.out.println("Есть ли ошибка: " + condition);
         System.out.println("Статус ошибки: " + errorStatus);
         System.out.println("Текст ошибки: " + errorMassage);
-    }
-
-    public Error() {
-
     }
 
     public static void main(String[] args) {

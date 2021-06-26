@@ -9,7 +9,6 @@ public class Book {
         this.countOfPage = countOfPage;
     }
 
-
     public String getName() {
         return name;
     }

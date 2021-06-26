@@ -10,12 +10,12 @@ public class Engineer extends Profession {
         super();
     }
 
-    public Engineer(String name, String surname, String education, int birthday, String nameOfProject, String executorOfProject) {
-        super(name, surname, education, birthday);
+    public Engineer(String name, String education, int birthday,
+                    String nameOfProject, String executorOfProject) {
+        super(name, education, birthday);
         this.nameOfProject = nameOfProject;
         this.executorOfProject = executorOfProject;
     }
-
 
     public String getNameOfProject() {
         return nameOfProject;

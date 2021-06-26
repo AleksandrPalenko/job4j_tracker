@@ -9,10 +9,10 @@ public class Dentist extends Doctor {
         super();
     }
 
-    public Dentist(String name, String surname, String education,
+    public Dentist(String name, String education,
                    int birthday, int experienceOfWork, String gender,
                    String nameOfTeeth, int durationOfOperation) {
-        super(name, surname, education, birthday, experienceOfWork, gender);
+        super(name, education, birthday, experienceOfWork, gender);
         this.nameOfTeeth = nameOfTeeth;
         this.durationOfOperation = durationOfOperation;
     }
