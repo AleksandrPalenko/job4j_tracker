@@ -11,17 +11,18 @@ public class Departments {
             for (String el : value.split("/")) {
                 if (start.equals("")) {
                     start = el;
-                    tmp.add(start);
                 } else {
-                    tmp.add(start + "/" + el);
+                    start = start + "/" + el;
                 }
+                tmp.add(start);
             }
         }
         return new ArrayList<>(tmp);
     }
 
-    public static void sortAsc(List<String> orgs) {
+    public static List<String> sortAsc(List<String> orgs) {
         orgs.sort(Comparator.naturalOrder());
+        return orgs;
     }
 
     public static void sortDesc(List<String> orgs) {
