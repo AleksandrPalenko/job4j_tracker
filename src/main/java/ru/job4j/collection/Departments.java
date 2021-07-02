@@ -25,7 +25,8 @@ public class Departments {
         return orgs;
     }
 
-    public static void sortDesc(List<String> orgs) {
+    public static List<String> sortDesc(List<String> orgs) {
         orgs.sort(new DepDescComp());
+        return orgs;
     }
 }
