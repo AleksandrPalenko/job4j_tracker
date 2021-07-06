@@ -26,11 +26,11 @@ public class SearchFolderTest {
     public void whenFilterName() {
         List<Folder> list = List.of(
                 new Folder("fix", 110),
-                new Folder("bug", 75),
+                new Folder("bug", 65),
                 new Folder("bug", 90)
         );
         List<Folder> expected = List.of(
-                new Folder("bug", 75),
+                new Folder("bug", 65),
                 new Folder("bug", 90)
         );
         Predicate<Folder> pred = f -> f.getName().contains("bug");
