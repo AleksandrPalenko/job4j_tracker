@@ -5,18 +5,22 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
 public class ProfilesTest {
 
     @Test
     public void collectToAddress() {
-        List<Address> values = new ArrayList<>();
-        values.add(new Address("moskva", "first", 1, 2));
-        values.add(new Address("moskva", "second", 4, 2));
-        values.add(new Address("moskva", "third", 10, 2));
-        values.add(new Address("moskva", "four", 8, 2));
+        List<Profile> values = List.of(
+                new Profile(new Address("Moskva", "first", 1, 2)),
+                new Profile(new Address("Pokrov", "second", 10, 21))
+                );
         Profiles pr = new Profiles();
-        List<Profiles> rsl = pr.collect(values);
+        List<Address> rsl = pr.collect(values);
+        List<Address> expected = new ArrayList<>();
+        expected.add(new Address("Moskva", "first", 1, 2));
+        expected.add(new Address("Pokrov", "second", 10, 21));
+        assertThat(rsl, is(expected));
     }
 }
