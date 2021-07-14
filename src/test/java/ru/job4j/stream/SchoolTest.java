@@ -1,9 +1,9 @@
 package ru.job4j.stream;
 
+import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.function.Predicate;
 
 import static org.hamcrest.core.Is.is;
@@ -63,5 +63,20 @@ public class SchoolTest {
         expected.add(new Student(30, "Surname3"));
         expected.add(new Student(40, "Surname4"));
         assertThat(rsl, is(expected));
+    }
+
+    @Test
+    public void whenCollectClassToMap() {
+        List<Student> students = List.of(
+                new Student(100, "Surname1"),
+                new Student(303, "Surname1"),
+                new Student(404, "Surname4")
+        );
+        School sc = new School();
+        Map<String, Student> rsl = sc.collectToMap(students);
+        Map<String, Student> expected = new TreeMap<>();
+        expected.put("Surname1", new Student(100, "Surname1"));
+        expected.put("Surname4", new Student(404, "Surname4"));
+        assertEquals(expected.entrySet(), rsl.entrySet());
     }
 }
