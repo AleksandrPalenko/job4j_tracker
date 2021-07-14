@@ -77,6 +77,6 @@ public class SchoolTest {
         Map<String, Student> expected = new TreeMap<>();
         expected.put("Surname1", new Student(100, "Surname1"));
         expected.put("Surname4", new Student(404, "Surname4"));
-        assertEquals(expected.entrySet(), rsl.entrySet());
+        assertThat(rsl, is(expected));
     }
 }

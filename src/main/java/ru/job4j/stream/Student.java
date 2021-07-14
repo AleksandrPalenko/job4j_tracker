@@ -25,7 +25,7 @@ public class Student {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof Student)) {
+        if (o == null || getClass() != o.getClass()) {
             return false;
         }
         Student student = (Student) o;
