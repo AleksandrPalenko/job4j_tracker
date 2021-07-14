@@ -32,12 +32,11 @@ public class BankService {
      */
 
     public void addAccount(String passport, Account account) {
-        User user = findByPassport(passport); //находим пользователя по паспотрту
+        User user = findByPassport(passport);
         if (user != null) {
-            List<Account> userAccount = users.get(user); //получем список всех счетов пользователя
-            // проверияем что полученный выше список не содержит добавляемый аккаунт
+            List<Account> userAccount = users.get(user);
             if (!userAccount.contains(account)) {
-                userAccount.add(account); //добавляем новый счет пользователю
+                userAccount.add(account);
             }
         }
     }
@@ -49,15 +48,12 @@ public class BankService {
      */
 
     public User findByPassport(String passport) {
-        User rsl = null;
-        for (User value : users.keySet()) {
-            if (value.getPassport().equals(passport)) {
-                rsl = value;
-                break;
-            }
-        }
-        return rsl;
-    }
+        return users.keySet()
+                .stream()
+                .filter(s -> s.getPassport().equals(passport))
+                .findFirst()
+                .orElse(null);
+}
 
     /**
      * Метод ищет пользователя по реквизитам счета
@@ -66,18 +62,15 @@ public class BankService {
      */
 
     public Account findByRequisite(String passport, String requisite) {
-        Account rsl = null;
         User user = findByPassport(passport);
         if (user != null) {
-            for (Account account : users.get(user)) {
-                if (account.getRequisite().equals(requisite)) {
-                    rsl = account;
-                    break;
-                }
-            }
+            return users.get(user)
+                    .stream()
+                    .filter(s -> s.getRequisite().equals(requisite))
+                    .findFirst()
+                    .orElse(null);
         }
-
-        return rsl;
+        return null;
     }
 
     /**
@@ -101,6 +94,6 @@ public class BankService {
             return true;
         }
 
-        return rsl;
+        return false;
     }
 }
