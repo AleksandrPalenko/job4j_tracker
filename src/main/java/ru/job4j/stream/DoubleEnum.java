@@ -4,7 +4,6 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-
     public class DoubleEnum {
 
     public enum Suit {
@@ -15,7 +14,7 @@ import java.util.stream.Stream;
         V_6, V_7, V_8
     }
 
-    public class Card {
+    public static class Card {
         private Suit suit;
         private Value value;
 
@@ -24,11 +23,16 @@ import java.util.stream.Stream;
             this.value = value;
         }
 
-        public void main(String[] args) {
+        public static void main(String[] args) {
             Stream.of(Suit.values())
-                    .flatMap(suits -> Stream.of(Value.values())
-                            .map(values -> suits + " and " + values))
+                    .flatMap(x -> Stream.of(Value.values())
+                            .map(y -> (new Card(x, y))))
                     .forEach(System.out::println);
+        }
+
+        @Override
+        public String toString() {
+            return "DoubleEnum{" + "suit=" + suit + ", value=" + value + '}';
         }
     }
 }
