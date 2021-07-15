@@ -1,9 +1,6 @@
 package ru.job4j.bank;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Класс описывает работу простейшей очереди по приоритету, которая работает
@@ -32,9 +29,9 @@ public class BankService {
      */
 
     public void addAccount(String passport, Account account) {
-        User user = findByPassport(passport);
-        if (user != null) {
-            List<Account> userAccount = users.get(user);
+        Optional<User> user = Optional.ofNullable(findByPassport(passport));
+        if (user.isPresent()) {
+            List<Account> userAccount = users.get(user.get());
             if (!userAccount.contains(account)) {
                 userAccount.add(account);
             }
@@ -62,9 +59,9 @@ public class BankService {
      */
 
     public Account findByRequisite(String passport, String requisite) {
-        User user = findByPassport(passport);
-        if (user != null) {
-            return users.get(user)
+        Optional<User> user = Optional.ofNullable(findByPassport(passport));
+        if (user.isPresent()) {
+            return users.get(user.get())
                     .stream()
                     .filter(s -> s.getRequisite().equals(requisite))
                     .findFirst()
@@ -72,7 +69,6 @@ public class BankService {
         }
         return null;
     }
-
     /**
      * Метод для перечисления денег с одного счёта на другой счёт.
      * Если счёт не найден или не хватает денег на счёте srcAccount (с которого переводят),
@@ -94,6 +90,6 @@ public class BankService {
             return true;
         }
 
-        return false;
+        return rsl;
     }
 }
