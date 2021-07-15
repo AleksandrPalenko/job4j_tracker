@@ -18,7 +18,7 @@ public class SortByItemDecreaseTest {
                 new Item(2, "Bently"),
                 new Item(4, "Audi")
         );
-        List<Item> expect = Arrays.asList(
+        List<Item> expect = List.of(
                 new Item(4, "Audi"),
                 new Item(2, "Bently"),
                 new Item(1, "Lada")

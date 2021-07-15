@@ -17,7 +17,7 @@ public class SortByItemIncreaseTest {
                 new Item(2, "Bently"),
                 new Item(1, "Lada")
         );
-        List<Item> expect = Arrays.asList(
+        List<Item> expect = List.of(
                 new Item(1, "Lada"),
                 new Item(2, "Bently"),
                 new Item(4, "Audi")
