@@ -29,7 +29,7 @@ public class BankService {
      */
 
     public void addAccount(String passport, Account account) {
-        Optional<User> user = Optional.ofNullable(findByPassport(passport));
+        Optional<User> user = findByPassport(passport);
         if (user.isPresent()) {
             List<Account> userAccount = users.get(user.get());
             if (!userAccount.contains(account)) {
@@ -44,13 +44,12 @@ public class BankService {
      * @return возвращает пользователя или null если такого пользователя нет
      */
 
-    public User findByPassport(String passport) {
+    public Optional<User> findByPassport(String passport) {
         return users.keySet()
                 .stream()
                 .filter(s -> s.getPassport().equals(passport))
-                .findFirst()
-                .orElse(null);
-}
+                .findFirst();
+    }
 
     /**
      * Метод ищет пользователя по реквизитам счета
@@ -58,17 +57,18 @@ public class BankService {
      * @return возвращает пользователя или null если такого пользователя нет
      */
 
-    public Account findByRequisite(String passport, String requisite) {
-        Optional<User> user = Optional.ofNullable(findByPassport(passport));
+    public Optional<Account> findByRequisite(String passport, String requisite) {
+        Optional<User> user = findByPassport(passport);
+        Optional<Account> rsl = Optional.empty();
         if (user.isPresent()) {
             return users.get(user.get())
                     .stream()
                     .filter(s -> s.getRequisite().equals(requisite))
-                    .findFirst()
-                    .orElse(null);
+                    .findFirst();
         }
-        return null;
+        return rsl;
     }
+
     /**
      * Метод для перечисления денег с одного счёта на другой счёт.
      * Если счёт не найден или не хватает денег на счёте srcAccount (с которого переводят),
@@ -82,12 +82,15 @@ public class BankService {
                                  String destPassport, String destRequisite,
                                  double amount) {
         boolean rsl = false;
-        Account srcAccount1 = findByRequisite(srcPassport, srcRequisite);
-        Account srcAccount2 = findByRequisite(destPassport, destRequisite);
-        if (srcAccount1 != null && srcAccount2 != null && srcAccount1.getBalance() >= amount) {
-            srcAccount1.setBalance(srcAccount1.getBalance() - amount);
-            srcAccount2.setBalance(srcAccount2.getBalance() + amount);
-            return true;
+        Optional<Account> srcAccount1 = findByRequisite(srcPassport, srcRequisite);
+        Optional<Account> srcAccount2 = findByRequisite(destPassport, destRequisite);
+        if (srcAccount1.isPresent() && srcAccount2.isPresent()) {
+
+            if (srcAccount1.get().getBalance() >= amount) {
+                srcAccount1.get().setBalance(srcAccount1.get().getBalance() - amount);
+                srcAccount2.get().setBalance(srcAccount2.get().getBalance() + amount);
+                rsl = true;
+            }
         }
 
         return rsl;
