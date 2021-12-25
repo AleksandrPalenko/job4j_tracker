@@ -15,7 +15,6 @@ public class ComparatorRelise {
         );
         System.out.println(items);
         Collections.sort(items, new SortByItemIncrease());
-        //Collections.reverse(items);
         System.out.println(items);
 
     }

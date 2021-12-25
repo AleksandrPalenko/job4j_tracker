@@ -20,7 +20,7 @@ public class FindNameAction implements UserAction {
     public boolean execute(Input input, Tracker tracker) {
         String name = input.askStr("Enter name: ");
         List<Item> items = tracker.findByName(name);
-        int size = items.size(); //добавили размер листа
+        int size = items.size();
         if (size > 0) {
             for (Item item : items) {
                 out.println(item);
