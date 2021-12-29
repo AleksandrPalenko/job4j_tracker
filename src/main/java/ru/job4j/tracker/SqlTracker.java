@@ -1,5 +1,7 @@
 package ru.job4j.tracker;
 
+import ru.job4j.tracker.model.Item;
+
 import java.io.InputStream;
 import java.sql.*;
 import java.util.ArrayList;
@@ -9,6 +11,13 @@ import java.util.Properties;
 public class SqlTracker implements Store, AutoCloseable {
 
     private Connection cn;
+
+    public SqlTracker(Connection connection) {
+    }
+
+    public SqlTracker() {
+
+    }
 
     public void init() {
         try (InputStream in = SqlTracker.class.getClassLoader().getResourceAsStream("app.properties")) {
@@ -32,14 +41,26 @@ public class SqlTracker implements Store, AutoCloseable {
         }
     }
 
+    public Item itemMethod(ResultSet res) throws Exception {
+                return new Item(
+                        res.getInt("id"),
+                        res.getString("name"),
+                        res.getTimestamp("created").toLocalDateTime());
+
+    }
+
     @Override
     public Item add(Item item) {
-        init();
         try (PreparedStatement statement =
                      cn.prepareStatement("insert into items(name, created) values (?, ?)")) {
             statement.setString(1, item.getName());
             statement.setTimestamp(2, Timestamp.valueOf(item.getCreated()));
             statement.execute();
+            try (ResultSet rs = statement.getGeneratedKeys()) {
+                if (rs.next()) {
+                    item.setId(rs.getInt(1));
+                }
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -53,7 +74,7 @@ public class SqlTracker implements Store, AutoCloseable {
                      cn.prepareStatement("update items set name = ?, created = ? where id = ?")) {
             statement.setString(1, item.getName());
             statement.setTimestamp(2, Timestamp.valueOf(item.getCreated()));
-            statement.setInt(3, id); /* or statement.setInt(3, Integer.parseInt(id)); */
+            statement.setInt(3, id);
             result = statement.executeUpdate() > 0;
         } catch (Exception e) {
             e.printStackTrace();
@@ -97,12 +118,10 @@ public class SqlTracker implements Store, AutoCloseable {
         List<Item> otherName = new ArrayList<>();
         try (PreparedStatement statement =
                      cn.prepareStatement("select * from items where name = ?")) {
+            statement.setString(1, key);
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
-                    otherName.add(new Item(
-                            resultSet.getInt("id"),
-                            resultSet.getString("name")
-                    ));
+                    otherName.add(itemMethod(resultSet));
                 }
             }
         } catch (Exception e) {
@@ -116,12 +135,10 @@ public class SqlTracker implements Store, AutoCloseable {
         Item otherId = null;
         try (PreparedStatement statement =
                      cn.prepareStatement("select * from items where id = ?")) {
+            statement.setInt(1, id);
             try (ResultSet resultSet = statement.executeQuery()) {
-                while (resultSet.next()) {
-                    otherId = new Item(
-                            resultSet.getInt("id"),
-                            resultSet.getString("name")
-                    );
+                if (resultSet.next()) {
+                    otherId = itemMethod(resultSet);
                 }
             }
         } catch (Exception e) {
