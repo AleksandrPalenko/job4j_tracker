@@ -15,20 +15,20 @@ public class StartUITest {
         Input in = new StubInput(
                 new String[]{"0", "Item name", "1"}
         );
-        Tracker tracker = new Tracker();
+        MemTracker memTracker = new MemTracker();
         UserAction[] actions = {
                 new CreateAction(out),
                 new ExitAction(out)
         };
-        new StartUI(out).init(in, tracker, Arrays.asList(actions));
-        assertThat(tracker.findAll().get(0).getName(), is("Item name"));
+        new StartUI(out).init(in, memTracker, Arrays.asList(actions));
+        assertThat(memTracker.findAll().get(0).getName(), is("Item name"));
     }
 
     @Test
     public void whenReplaceItem() {
         Output out = new StubOutput();
-        Tracker tracker = new Tracker();
-        Item item = tracker.add(new Item("Replaced item"));
+        MemTracker memTracker = new MemTracker();
+        Item item = memTracker.add(new Item("Replaced item"));
         String replacedName = "New item name";
         Input in = new StubInput(
                 new String[]{"0", String.valueOf(item.getId()), replacedName, "1"}
@@ -37,15 +37,15 @@ public class StartUITest {
                 new ReplaceAction(out),
                 new ExitAction(out)
         };
-        new StartUI(out).init(in, tracker, Arrays.asList(actions));
-        assertThat(tracker.findById(item.getId()).getName(), is(replacedName));
+        new StartUI(out).init(in, memTracker, Arrays.asList(actions));
+        assertThat(memTracker.findById(item.getId()).getName(), is(replacedName));
     }
 
     @Test
     public void whenDeleteItem() {
         Output out = new StubOutput();
-        Tracker tracker = new Tracker();
-        Item item = tracker.add(new Item("Deleted item"));
+        MemTracker memTracker = new MemTracker();
+        Item item = memTracker.add(new Item("Deleted item"));
         Input in = new StubInput(
                 new String[]{"0", String.valueOf(item.getId()), "1"}
         );
@@ -53,15 +53,15 @@ public class StartUITest {
                 new DeleteAction(out),
                 new ExitAction(out)
         };
-        new StartUI(out).init(in, tracker, Arrays.asList(actions));
-        assertThat(tracker.findById(item.getId()), is(nullValue()));
+        new StartUI(out).init(in, memTracker, Arrays.asList(actions));
+        assertThat(memTracker.findById(item.getId()), is(nullValue()));
     }
 
     @Test
     public void whenFindByName() {
         Output out = new StubOutput();
-        Tracker tracker = new Tracker();
-        Item item = tracker.add(new Item("car"));
+        MemTracker memTracker = new MemTracker();
+        Item item = memTracker.add(new Item("car"));
         Input in = new StubInput(
                 new String[]{"0", "car", "1"}
         );
@@ -70,7 +70,7 @@ public class StartUITest {
                 new FindNameAction(out),
                 new ExitAction(out)
         };
-        new StartUI(out).init(in, tracker, Arrays.asList(actions));
+        new StartUI(out).init(in, memTracker, Arrays.asList(actions));
         assertThat(out.toString(), is(
                 "Menu." + input
                         + "0. Find items by name" + input
@@ -88,14 +88,14 @@ public class StartUITest {
         Input in = new StubInput(
                 new String[]{"0", "1"}
         );
-        Tracker tracker = new Tracker();
-        Item item = tracker.add(new Item("car"));
+        MemTracker memTracker = new MemTracker();
+        Item item = memTracker.add(new Item("car"));
         String input = System.lineSeparator();
         UserAction[] actions = {
                 new ShowAllAction(out),
                 new ExitAction(out)
         };
-        new StartUI(out).init(in, tracker, Arrays.asList(actions));
+        new StartUI(out).init(in, memTracker, Arrays.asList(actions));
         assertThat(out.toString(), is(
                 "Menu." + input
                         + "0. Show all Items" + input
@@ -111,8 +111,8 @@ public class StartUITest {
     @Test
     public void whenFindByIdAction() {
         Output out = new StubOutput();
-        Tracker tracker = new Tracker();
-        Item item = tracker.add(new Item(2, "job4j"));
+        MemTracker memTracker = new MemTracker();
+        Item item = memTracker.add(new Item(2, "job4j"));
         Input in = new StubInput(
                 new String[]{"0", String.valueOf(item.getId()), "1"}
         );
@@ -121,7 +121,7 @@ public class StartUITest {
                 new FindItemAction(out),
                 new ExitAction(out)
         };
-        new StartUI(out).init(in, tracker, Arrays.asList(actions));
+        new StartUI(out).init(in, memTracker, Arrays.asList(actions));
         assertThat(out.toString(), is(
                 "Menu." + input
                         + "0. Find item by id" + input
@@ -139,11 +139,11 @@ public class StartUITest {
         Input in = new StubInput(
                 new String[]{"15", "0"}
         );
-        Tracker tracker = new Tracker();
+        MemTracker memTracker = new MemTracker();
         UserAction[] actions = new UserAction[]{
                 new ExitAction(out)
         };
-        new StartUI(out).init(in, tracker, Arrays.asList(actions));
+        new StartUI(out).init(in, memTracker, Arrays.asList(actions));
         String ln = System.lineSeparator();
         assertThat(out.toString(), is(
                 "Menu." + ln
