@@ -10,6 +10,10 @@ public class SqlTracker implements Store, AutoCloseable {
 
     private Connection cn;
 
+    public SqlTracker(Connection cn) {
+        this.cn = cn;
+    }
+
     public SqlTracker() {
 
     }
@@ -97,7 +101,7 @@ public class SqlTracker implements Store, AutoCloseable {
         try (PreparedStatement statement = cn.prepareStatement("select * from items")) {
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
-                   items.add(itemMethod(resultSet));
+                    items.add(itemMethod(resultSet));
                 }
             }
         } catch (Exception e) {
