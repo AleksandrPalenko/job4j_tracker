@@ -1,7 +1,5 @@
 package ru.job4j.tracker;
 
-import ru.job4j.tracker.model.Item;
-
 import java.io.InputStream;
 import java.sql.*;
 import java.util.ArrayList;
@@ -17,7 +15,8 @@ public class SqlTracker implements Store, AutoCloseable {
     }
 
     public void init() {
-        try (InputStream in = SqlTracker.class.getClassLoader().getResourceAsStream("app.properties")) {
+        try (InputStream in = SqlTracker.class.getClassLoader()
+                .getResourceAsStream("app.properties")) {
             Properties config = new Properties();
             config.load(in);
             Class.forName(config.getProperty("driver-class-name"));
@@ -39,16 +38,17 @@ public class SqlTracker implements Store, AutoCloseable {
     }
 
     public Item itemMethod(ResultSet res) throws Exception {
-                return new Item(
-                        res.getInt("id"),
-                        res.getString("name"),
-                        res.getTimestamp("created").toLocalDateTime());
+        return new Item(
+                res.getInt("id"),
+                res.getString("name"),
+                res.getTimestamp("created").toLocalDateTime());
     }
 
     @Override
     public Item add(Item item) {
         try (PreparedStatement statement =
-                     cn.prepareStatement("insert into items(name, created) values (?, ?)")) {
+                     cn.prepareStatement("insert into items(name, created) values (?, ?)",
+                             Statement.RETURN_GENERATED_KEYS)) {
             statement.setString(1, item.getName());
             statement.setTimestamp(2, Timestamp.valueOf(item.getCreated()));
             statement.execute();
@@ -97,10 +97,7 @@ public class SqlTracker implements Store, AutoCloseable {
         try (PreparedStatement statement = cn.prepareStatement("select * from items")) {
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
-                    items.add(new Item(
-                            resultSet.getInt("id"),
-                            resultSet.getString("name")
-                    ));
+                   items.add(itemMethod(resultSet));
                 }
             }
         } catch (Exception e) {

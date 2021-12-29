@@ -3,7 +3,6 @@ package ru.job4j.collection;
 import ru.job4j.tracker.Item;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 public class ComparatorRelise {
@@ -14,9 +13,8 @@ public class ComparatorRelise {
                 new Item(1, "Reboot server")
         );
         System.out.println(items);
-        Collections.sort(items, new SortByItemIncrease());
+        items.sort(new SortByItemIncrease());
         System.out.println(items);
 
     }
-
 }
