@@ -23,7 +23,7 @@ public class SortByItemDecreaseTest {
                 new Item(2, "Bently"),
                 new Item(1, "Lada")
         );
-        Collections.sort(items, new SortByItemDecrease());
+        items.sort(new SortByItemDecrease());
         assertThat(items, is(expect));
 
     }
