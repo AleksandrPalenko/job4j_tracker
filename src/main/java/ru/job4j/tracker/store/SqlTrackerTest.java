@@ -25,7 +25,6 @@ import static org.junit.Assert.assertThat;
 public class SqlTrackerTest {
 
     static Connection connection;
-    SqlTracker tracker = new SqlTracker(connection);
 
     @BeforeClass
     public static void initConnection() {
@@ -59,6 +58,7 @@ public class SqlTrackerTest {
 
     @Test
     public void whenSaveItemAndFindByGeneratedIdThenMustBeTheSame() {
+        SqlTracker tracker = new SqlTracker(connection);
         Item item = new Item("item");
         tracker.add(item);
         assertThat(tracker.findById(item.getId()), is(item));
@@ -66,6 +66,7 @@ public class SqlTrackerTest {
 
     @Test
     public void whenSaveItemAndFindGeneratedIdAndReplaceHim() {
+        SqlTracker tracker = new SqlTracker(connection);
         Item item = new Item("item");
         tracker.add(item);
         int id = item.getId();
@@ -76,6 +77,7 @@ public class SqlTrackerTest {
 
     @Test
     public void whenSaveItemAndFindGeneratedIdAndDeleteHim() {
+        SqlTracker tracker = new SqlTracker(connection);
         Item item = new Item("item");
         tracker.add(item);
         int id = item.getId();
@@ -85,28 +87,31 @@ public class SqlTrackerTest {
 
     @Test
     public void whenSaveItemAndFindGeneratedIdAndFindAll() {
-        Item item = new Item();
-        Item item1 = new Item();
-        Item item2 = new Item();
-        Item item3 = new Item();
+        SqlTracker tracker = new SqlTracker(connection);
+        Item item = new Item("item");
+        Item item1 = new Item("item2");
+        Item item2 = new Item("item3");
+        Item item3 = new Item("item4");
         tracker.add(item);
         tracker.add(item1);
         tracker.add(item2);
         tracker.add(item3);
-        assertEquals(tracker.findAll(), is(List.of(item, item1, item2, item3)));
+        assertThat(tracker.findAll(), is(List.of(item, item1, item2, item3)));
     }
 
     @Test
     public void whenGetItemByName() {
+        SqlTracker tracker = new SqlTracker(connection);
         Item item = new Item("item");
         Item item2 = new Item("item2");
         tracker.add(item);
         tracker.add(item2);
-        assertThat(tracker.findByName("item"), is(List.of(item, item2)));
+        assertThat(tracker.findByName("item"), is(List.of(item)));
     }
 
     @Test
     public void whenGetItemById() {
+        SqlTracker tracker = new SqlTracker(connection);
         Item item = new Item("item");
         tracker.add(item);
         assertEquals(item, tracker.findById(item.getId()));
