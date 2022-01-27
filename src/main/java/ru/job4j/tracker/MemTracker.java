@@ -62,16 +62,5 @@ public class MemTracker implements Store {
         return rsl;
     }
 
-    public static void main(String[] args) {
-        MemTracker mem = new MemTracker();
-        long startTime = System.currentTimeMillis();
-        for (int i = 1; i < 100000; i++) {
-            mem.add(new Item("item" + i)
-            );
-            System.out.println("item " + i);
-        }
-        long finishTime = System.currentTimeMillis();
-        System.out.printf("%nApp running time: %d%n", finishTime - startTime);
-    }
 }
 
