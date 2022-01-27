@@ -1,5 +1,8 @@
 package ru.job4j.tracker;
 
+import ru.job4j.tracker.gcTracker.ProfAddAction;
+import ru.job4j.tracker.gcTracker.ProfDeleteAction;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -41,7 +44,9 @@ public class StartUI {
                 new ShowAllAction(output),
                 new FindNameAction(output),
                 new FindItemAction(output),
-                new ExitAction(output)
+                new ExitAction(output),
+                new ProfAddAction(),
+                new ProfDeleteAction()
         };
         SqlTracker tracker = new SqlTracker();
         tracker.init();
