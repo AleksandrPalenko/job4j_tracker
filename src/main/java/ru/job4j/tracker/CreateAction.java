@@ -20,4 +20,8 @@ public class CreateAction implements UserAction {
         tracker.add(item);
         return true;
     }
+
+    public static void main(String[] args) {
+
+    }
 }
