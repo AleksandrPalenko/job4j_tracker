@@ -48,8 +48,11 @@ public class StartUI {
                 new ProfAddAction(),
                 new ProfDeleteAction()
         };
+        MemTracker tracker = new MemTracker();
+        /*
         SqlTracker tracker = new SqlTracker();
         tracker.init();
+         */
         new StartUI(output).init(input, tracker, Arrays.asList(actions));
     }
 
