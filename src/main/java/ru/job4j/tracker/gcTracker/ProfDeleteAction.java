@@ -1,10 +1,16 @@
 package ru.job4j.tracker.gcTracker;
 
-import ru.job4j.tracker.Input;
-import ru.job4j.tracker.Store;
-import ru.job4j.tracker.UserAction;
+import ru.job4j.tracker.*;
+
+import java.util.List;
 
 public class ProfDeleteAction implements UserAction {
+    private final Output out;
+
+    public ProfDeleteAction(Output out) {
+        this.out = out;
+    }
+
     @Override
     public String name() {
         return "Delete item";
@@ -12,9 +18,14 @@ public class ProfDeleteAction implements UserAction {
 
     @Override
     public boolean execute(Input input, Store tracker) {
-        for (int i = 0; i < 100000; i++) {
-            tracker.delete(i);
-            System.out.printf("%nDelete item: %d%n " + i);
+        List<Item> list = tracker.findAll();
+        if (list.size() != 0) {
+            for (Item item : list) {
+                tracker.delete(item.getId());
+                out.println("%nDelete item: %d%n " + item);
+            }
+        } else {
+            out.println("%nDelete item is not possible: %d%n ");
         }
         return true;
     }

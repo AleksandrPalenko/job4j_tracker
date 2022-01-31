@@ -45,8 +45,8 @@ public class StartUI {
                 new FindNameAction(output),
                 new FindItemAction(output),
                 new ExitAction(output),
-                new ProfAddAction(),
-                new ProfDeleteAction()
+                new ProfAddAction(output),
+                new ProfDeleteAction(output)
         };
         MemTracker tracker = new MemTracker();
         /*

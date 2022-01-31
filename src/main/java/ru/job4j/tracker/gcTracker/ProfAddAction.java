@@ -3,6 +3,11 @@ package ru.job4j.tracker.gcTracker;
 import ru.job4j.tracker.*;
 
 public class ProfAddAction implements UserAction {
+    private final Output out;
+
+    public ProfAddAction(Output out) {
+        this.out = out;
+    }
 
     @Override
     public String name() {
@@ -11,9 +16,10 @@ public class ProfAddAction implements UserAction {
 
     @Override
     public boolean execute(Input input, Store tracker) {
-        for (int i = 0; i < 1000000; i++) {
+        out.println("=== Create many new Items ====");
+        for (int i = 0; i < 100000; i++) {
             tracker.add(new Item("Many Items " + i));
-            System.out.printf("%nAdd item: %d%n " + i);
+            out.println("Add item: " + i);
         }
         return true;
     }
