@@ -73,11 +73,12 @@ public class StartUITest {
         new StartUI(out).init(in, memTracker, Arrays.asList(actions));
         assertThat(out.toString(), is(
                 "Menu." + input
-                        + "0. Find items by name" + input
+                        + "0. Find item by Name" + input
                         + "1. Exit program" + input
-                        + item + input
+                        + "=== Find item by Name ===" + input
+                        + " item " + input
                         + "Menu." + input
-                        + "0. Find items by name" + input
+                        + "0. Find item by Name" + input
                         + "1. Exit program" + input
         ));
     }
@@ -124,11 +125,12 @@ public class StartUITest {
         new StartUI(out).init(in, memTracker, Arrays.asList(actions));
         assertThat(out.toString(), is(
                 "Menu." + input
-                        + "0. Find item by id" + input
+                        + "0. Find item by Id" + input
                         + "1. Exit program" + input
-                        + item + input
+                        + "=== Find item by Id ===" + input
+                        + " item " + input
                         + "Menu." + input
-                        + "0. Find item by id" + input
+                        + "0. Find item by Id" + input
                         + "1. Exit program" + input
         ));
     }
