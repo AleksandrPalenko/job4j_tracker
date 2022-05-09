@@ -8,8 +8,8 @@
     <version>1.0</version>
     <packaging>jar</packaging>
     <properties>
-        <maven.compiler.source>14</maven.compiler.source>
-        <maven.compiler.target>14</maven.compiler.target>
+        <maven.compiler.source>16</maven.compiler.source>
+        <maven.compiler.target>16</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     <profiles>
@@ -30,11 +30,12 @@
             <properties>
                 <db.url>jdbc:postgresql://127.0.0.1:5432/tracker</db.url>
                 <db.username>postgres</db.username>
-                <db.password>password</db.password>
+                <db.password>Gfwfyxbr47</db.password>
                 <db.driver>org.postgresql.Driver</db.driver>
             </properties>
         </profile>
     </profiles>
+
     <dependencies>
         <dependency>
             <groupId>org.hamcrest</groupId>
@@ -78,6 +79,16 @@
             <version>3.5.13</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.3.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>5.4.15.Final</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
@@ -90,11 +101,6 @@
                         <groupId>com.puppycrawl.tools</groupId>
                         <artifactId>checkstyle</artifactId>
                         <version>8.41.1</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>org.postgresql</groupId>
-                        <artifactId>postgresql</artifactId>
-                        <version>42.3.1</version>
                     </dependency>
                 </dependencies>
             </plugin>
