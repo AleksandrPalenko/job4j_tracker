@@ -1,6 +1,7 @@
 package ru.job4j.tracker.gcTracker;
 
 import ru.job4j.tracker.*;
+import ru.job4j.tracker.store.Store;
 
 public class ProfAddAction implements UserAction {
     private final Output out;
