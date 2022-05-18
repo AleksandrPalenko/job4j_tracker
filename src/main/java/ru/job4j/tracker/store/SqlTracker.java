@@ -47,7 +47,8 @@ public class SqlTracker implements Store, AutoCloseable {
         return new Item(
                 res.getInt("id"),
                 res.getString("name"),
-                res.getTimestamp("created").toLocalDateTime());
+                res.getTimestamp("created").toLocalDateTime(),
+                res.getString("description"));
     }
 
     @Override
