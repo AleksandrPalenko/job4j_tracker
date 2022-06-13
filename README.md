@@ -1,4 +1,5 @@
 # job4j_tracker
+Учебный проект, в рамках которого реализована программа трекер задач
 
 [![Build Status](https://travis-ci.com/AleksandrPalenko/job4j_tracker.svg?branch=master)](https://travis-ci.com/AleksandrPalenko/job4j_tracker)
 
