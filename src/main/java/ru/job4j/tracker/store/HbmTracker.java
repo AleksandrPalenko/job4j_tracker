@@ -19,7 +19,10 @@ public class HbmTracker implements Store, AutoCloseable {
     public Item add(Item item) {
         Session session = sf.openSession();
         session.beginTransaction();
-        session.save(item);
+        session.createQuery("INSERT INTO Item i(name, description) "
+                        + "VALUES i.name = :newName, i.description = :newDesc")
+                .setParameter("newName", item.getName())
+                .setParameter("newDesc", item.getDescription());
         session.getTransaction().commit();
         return item;
     }
@@ -28,37 +31,42 @@ public class HbmTracker implements Store, AutoCloseable {
     public boolean replace(int id, Item item) {
         Session session = sf.openSession();
         session.beginTransaction();
-        Item val = findById(id);
-        session.update(String.valueOf(val), item);
+        session.createQuery("UPDATE Item i SET i.name = :newName, i.description = :newDesc "
+                        + "WHERE id = :fId")
+                .setParameter("newName", item.getName())
+                .setParameter("newDesc", item.getDescription())
+                .setParameter("fId", id)
+                .executeUpdate();
         session.getTransaction().commit();
-        return item.equals(val);
+        return true;
     }
 
     @Override
     public boolean delete(int id) {
         Session session = sf.openSession();
         session.beginTransaction();
-        Item item = new Item(null);
-        item.setId(id);
-        session.delete(item);
+        session.createQuery("delete from Item  WHERE id = :fId")
+                .setParameter("fId", id)
+                .executeUpdate();
         session.getTransaction().commit();
-        return item.equals(findById(id));
+        return true;
     }
 
     @Override
     public List<Item> findAll() {
         Session session = sf.openSession();
         session.beginTransaction();
-        List result = session.createQuery("from ru.job4j.tracker.Item").list();
+        List result = session.createQuery("from Item").list();
         session.getTransaction().commit();
         return result;
     }
 
     @Override
-    public List<Item> findByName(String key) {
+    public List<Item> findByName(String name) {
         Session session = sf.openSession();
         session.beginTransaction();
-        List<Item> result = session.createQuery(key, Item.class).list();
+        List result = session.createQuery("select * from Item WHERE name = :fName")
+                        .setParameter("fName", name).list();
         session.getTransaction().commit();
         session.close();
         return result;
@@ -68,7 +76,8 @@ public class HbmTracker implements Store, AutoCloseable {
     public Item findById(int id) {
         Session session = sf.openSession();
         session.beginTransaction();
-        Item result = session.get(Item.class, id);
+        Item result = (Item) session.createQuery("select * from Item WHERE id = :fId")
+                .setParameter("fId", id).uniqueResult();
         session.getTransaction().commit();
         return result;
     }

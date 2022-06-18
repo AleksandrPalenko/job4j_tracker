@@ -37,6 +37,13 @@ public class Item {
         this.description = description;
     }
 
+    public static Item of(String name, String description) {
+        Item item = new Item();
+        item.name = name;
+        item.description = description;
+        return item;
+    }
+
     public LocalDateTime getCreated() {
         return created;
     }
